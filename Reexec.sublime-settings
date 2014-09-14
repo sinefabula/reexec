@@ -1,0 +1,22 @@
+// plugin settings
+{
+	"ssh_path": "ssh", // path to ssh executable, mostly for Windows users
+	"ssh_options": "", // will be overriden by server settings if present
+	"rsync_path": "rsync", // path to rsync executable, mostly for Windows users
+	"rsync_options": "-avr", // will be overriden by server settings if present
+	/*
+	"servers": [
+		{
+			// The only required parameters are these:
+			"name": "My Build Server",
+			"root_directory": "build", // path should be relative to ~ or absolute
+			"host": "192.168.1.2" // server address or host name as listed in .ssh/config
+
+			// The following parameters are optional. They are listed with their default values.
+			"port": "22",
+			"user": "",
+			"private_key": "", // you can explicitly specify path to your private key
+		}
+	]
+	*/
+}
