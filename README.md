@@ -59,7 +59,7 @@ Path to the `ssh` executable file. Leave as is for *nix, fill for Windows if not
 	"ssh_path": "ssh",
 ```
 
-SSH command line options. Should be self-explanatory. Note these will be overriden (not appended!) by the per-server settings.
+SSH command line options. Should be self-explanatory. Note these will be overridden (not appended!) by the per-server settings.
 ```javascript
 	"ssh_options": "",
 ```
@@ -118,11 +118,13 @@ These are not present by default. Remember that these settings override the plug
 Build System Configuration
 --------------------------
 
-As was mentioned earlier, `reexec` is build on top of `exec.py`. Thus, it supports the functionality of the latter and adds several options relevant to remote building. These are:
+First, you should specify `reexec` as the target for your build system. Add this line to your build system configuration:
+```javascript
+	"target": "reexec"
+```
+As was mentioned earlier, `reexec` is built on top of `exec`. Thus, it supports the functionality of the latter and adds several options relevant to remote building. These are:
 
-* `target` -- this setting should be set to `reexec` for the plugin to work.
 * `remote_server` -- name of the server to choose from the list given in the plugin settings file (see above). If unspecified, all other `reexec`-specific options will be ignored and `reexec` will act just as `exec`.
 * `remote_cmd` -- command to be executed on the server once the rsync job is done. This is the actual build command. Note for Windows users: `cwrsync` sets all the files and folders full (0777) permissions upon copying. This behaviour is overriden by `reexec` so that files are given 0644 permissions and folders are given 0755 permissions. This can render build scripts unable to execute. You can either override (again) `reexec`'s policy and give files full permissions, or, if you're using a build script, you can prepend the command that starts it, with a shell command, such as `sh build.sh`.
 * `remote_rsync_root` -- a directory on the remote server where the project directory will be created. It overrides the default setting in the plugin configuration file.
 * `excludes` -- list of file masks which are not to be copied to the server. Please refer to the rsync manual for more information.
-
